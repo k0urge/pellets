@@ -1,0 +1,23 @@
+name: Run Spider
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'
+
+jobs:
+  run-spider:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.13
+      - run: pip install -r requirements-scrapy.txt
+      - run: scrapy crawl prixpellets
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add data/monthly_prices.csv
+          git diff --quiet || git commit -m "Update CSV data - $(date +'%Y-%m-%d %H:%M:%S')"
+          git push
