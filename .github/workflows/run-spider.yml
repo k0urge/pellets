@@ -1,8 +1,12 @@
 name: Run Spider
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: '0 0 1 * *'
+    - cron: '0 0 * * *'
+
+permissions:
+  contents: write
 
 jobs:
   run-spider:
@@ -19,5 +23,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add data/monthly_prices.csv
-          git diff --quiet || git commit -m "Update CSV data - $(date +'%Y-%m-%d %H:%M:%S')"
+          git diff-index --quiet HEAD || git commit -m "Update CSV data - $(date +'%Y-%m-%d %H:%M:%S')"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
