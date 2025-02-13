@@ -1,9 +1,13 @@
 name: Update Plots
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'data/monthly_prices.csv'
+
+permissions:
+  contents: write
 
 jobs:
   update-plots:
@@ -20,5 +24,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add docs/images
-          git diff --quiet || git commit -m "Update plots - $(date +'%Y-%m-%d %H:%M:%S')"
+          git diff-index --quiet HEAD || git commit -m "Update plots - $(date +'%Y-%m-%d %H:%M:%S')"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
