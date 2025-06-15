@@ -39,8 +39,8 @@ jobs:
       - run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git pull --rebase origin main
           git add docs/images
+          git pull --rebase origin main
           git diff-index --quiet HEAD || git commit -m "Update plots - $(date +'%Y-%m-%d %H:%M:%S')"
           git push
         env:
