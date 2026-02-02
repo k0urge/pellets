@@ -9,6 +9,8 @@ This page provides a visual representation of wood pellet price trends in Switze
 ### Yearly Price Breakdown
 The following graphs provide a yearly breakdown of wood pellet prices to observe annual variations:
 
+#### 2026
+![Pellet Price Plot](images/plot-2026.png)
 #### 2025
 ![Pellet Price Plot](images/plot-2025.png)
 #### 2024
