@@ -1,3 +1,4 @@
+import ast
 import csv
 import re
 from datetime import datetime
@@ -42,7 +43,7 @@ class PrixpelletsSpider(scrapy.Spider):
             data_match = re.search(pattern, script_content)
             if data_match:
                 data_rows = data_match.group(1)
-                rows = eval(data_rows)
+                rows = ast.literal_eval(data_rows)
 
                 with open(DATA_PATH, 'r', newline='', encoding='utf-8') as csv_file_input:
                     data = [row for row in csv.reader(csv_file_input)]
