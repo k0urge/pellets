@@ -9,11 +9,20 @@ at [https://k0urge.github.io/pellets/](https://k0urge.github.io/pellets/).
 The project uses [Scrapy](https://scrapy.org/) to scrape the data and [Matplotlib](https://matplotlib.org/) to generate the plots.
 Additionally, [Jekyll](https://jekyllrb.com/) is used to create the GitHub Pages site.
 
+## Requirements
+
+- Python 3.11 or higher
+
 ## Local Usage
 Create a virtual environment and activate it:
 ```bash
 python -m venv .venv
-source .venv/bin/activate   # on Windows, use .venv\Scripts\activate      
+source .venv/bin/activate
+```
+
+On Windows, use:
+```bash
+.venv\Scripts\activate
 ```
 
 Install the required packages:
@@ -35,3 +44,9 @@ To generate the plots, run the following command:
 python plot.py
 ```
 The generated plots will be saved in the `docs/images` directory.
+
+### Run Website Locally
+```bash
+cd docs
+bundle exec jekyll serve
+```
